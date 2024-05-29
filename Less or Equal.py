@@ -1,11 +1,24 @@
-n,k=list(map(int, input().split()))
-nums=list(map(int, input().split()))
-nums=sorted(nums)
-are_equal = all(nums[i] == nums[0] for i in range(1, k ))
-if nums[k-1]==nums[k]:
-    print(-1)
-elif are_equal and nums[k-1]!=nums[k]:
-    print(nums[k-1])
+n, k = map(int, input().split())
+sequence = list(map(int, input().split()))
+sequence.sort()
+
+left = 1
+right = 10**9
+
+while left <= right:
+    mid = (left + right) // 2
+    count = 0
+    
+    for num in sequence:
+        if num <= mid:
+            count += 1
+    
+    if count <= k:
+        left = mid + 1
+    else:
+        right = mid - 1
+
+if right > 0:
+    print(right)
 else:
-    a=nums[k-1]+1
-    print(a)
+    print(-1)
